@@ -63,5 +63,29 @@ It should be avoided to use the same IV over multiple encryption operations as t
 
 Developer should be sure to properly initiate GCM mode. (Galois/Counter Mode) and to create random IVs for each different encryption. 
 
+## Client Code Quality
 
+It’s not recommended to transmit user roles from the mobile device to the server. Avoid relying on any roles or permission information that come from the mobile device.
+
+```
+@FormUrlEncoded
+@POST("/refreshToken")
+fun refreshToken(@Field("refresh_token") refreshToken: String,
+                 @Field("role") userRole: Role): Response<AuthResponse>
+```                 
+
+It’s recommended to verify the roles and permissions of authenticated users with information only available on the backend. This prevents an adversary to manipulate his role or permission from the mobile device to the server, thus gaining unauthorized access.
+
+### Javascript Injection
+
+When putting the javaScriptEnabled boolean to false, all JavaScript code running in the Webview will be blocked thus preventing an adversary to be able to execute malicious code. Implementing a custom web chrome client we are able to intercept the geolocation request and prompt the user with a dialog to grant geolocation permissions.
+
+## Code Tampering
+
+Typically, an attacker will exploit code modification via malicious forms of the apps hosted in third-party app stores. The attacker may also trick the user into installing the app via phishing attacks.
+
+### Tampering Detection
+To make sure our app has not been modified we can keep a reference to the original package name inside our app and compare this string against the package name when the app is opened. This way our app will never run with a different package name and we will make sure we are running the original version.
+
+In this case, we are keeping PACKAGE_NAME as a string in our class which could be decompiled, to add an extra level of security we could store it on a different, encrypted or on a remote server.
 
