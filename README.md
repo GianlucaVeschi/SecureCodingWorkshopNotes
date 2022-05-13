@@ -89,3 +89,16 @@ To make sure our app has not been modified we can keep a reference to the origin
 
 In this case, we are keeping PACKAGE_NAME as a string in our class which could be decompiled, to add an extra level of security we could store it on a different, encrypted or on a remote server.
 
+### Backups Enabled
+In most Android Devices application backups are enabled as a factory setting and some data is saved to the local file system, which is particularly susceptible to attacks in rooted devices.
+
+To prevent vulnerabilities associated with Enabled Backups, developers should:
+- Avoid backing up sensitive data in files that can be easily accessed from back-end systems
+- Disable automatic backups from the application entirely
+
+Good practices are:
+- to put the ```android:allowBackup="true"``` to ```false``` in the ```AndroidManifest.xml``` when creating a new project
+- to check if the device is rooted and completely stop the use of the app when detecting a rooted device.
+
+Checking for both known root cloakers and known root packages will detect the more advanced rooting software. Using ' su ' and 'busybox' will detect the less advanced rooting software. Root detection should be performed during app initialisation. Please note that these are best-effort measures. It is nearly impossible to detect all possible rooting software. It is nonetheless crucial to limit the amount of active rooted users as much as possible.
+
