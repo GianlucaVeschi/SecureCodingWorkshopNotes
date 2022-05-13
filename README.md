@@ -102,3 +102,11 @@ Good practices are:
 
 Checking for both known root cloakers and known root packages will detect the more advanced rooting software. Using ' su ' and 'busybox' will detect the less advanced rooting software. Root detection should be performed during app initialisation. Please note that these are best-effort measures. It is nearly impossible to detect all possible rooting software. It is nonetheless crucial to limit the amount of active rooted users as much as possible.
 
+## Reverse Engineering
+
+Process or method through which one attempts to understand through deductive reasoning how a previously made device, process, system, or piece of software accomplishes a task with very little (if any) insight into exactly how it does so.
+
+### Emulation Detection
+Attackers often use emulator devices to find vulnerabilities in mobile applications, hence preventing the app to execute when detecting an emulator can be even more effective than code obfuscation.
+
+To check if the model name contains the word emulator isn’t enough to prevent emulation. Some emulators will mask or mock a real phone name, hence more sophisticated methods have to be used.
