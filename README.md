@@ -136,4 +136,10 @@ To prevent Reverse Engineering vulnerabilities developer should
 
 *Proguard* obfuscates your code by removing unused code and renaming classes, fields, and methods with semantically obscure names which make the code base, smaller and more efficient. The result is a smaller sized .apk file that is more difficult to reverse engineer
 
-### Password Autofill
+## 10 -  Extraneous Functionality
+
+### Autofill Password
+When working in DEV mode it is common practice for developers to bypass the sign in process by autofilling the form. If used, this measure MUST be always protected by DEBUG mode only and not land in production.
+
+### Debugging Features Enabled
+Code which is written under the 'BuildConfig.DEBUG' boolean is not compiled when building the release APK. This implementation will run the checks in the release build, but not in the debug build. This will prevent an adversary from disabling the emulation detection in the release build.
